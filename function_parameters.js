@@ -1,3 +1,5 @@
+'use strict'
+
 // window 关键字   所有的全局变量都会绑定在window上面！
 // const 来定义常量 
 
@@ -32,18 +34,41 @@ jack.f = function(x) {
 }
 console.log( jack.f(1) ) ; 
 // 解构赋值 
-var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
+var [name,age,sex] = ['jack','21','male']; 
+console.log( 'name '+name+" age = "+age+" sex = "+sex); 
 
-//1 自动赋值  2 undefined 3 括号 4 更改名字
+//对象的解构赋值
 
-var person {
-    name : "kevin",
-    age : 20,
-    gender:man ,
-    address: {
-        city:"qingdao",
-        area:"huangdao"
+var student = {
+    id:1,  //不能使用前导零 
+    name:'young',
+    age:21,
+    college:'qdu'
+}; 
+var {id,name,college:school,s:major="software engeneering"} = student; 
+console.log('school = '+school + " major = "+major); 
+
+//不同名称变量之间的赋值 
+var {hostname:domain,pathname:path} = location; 
+console.log(domain+" ** "+path); 
+
+
+//函数的解析赋值 
+function date( { year=2010,month=11,day=11} )  {
+    return year+"/"+month+"/"+day; 
+}; 
+console.log( date( {year:22,month:22} ) ); 
+
+
+//js里面 一定要严格的 指向 ！
+var university = {
+    address:"qingdao ",
+    name :"niit ",
+    getAddress:function() {
+        return this.address; 
     }
 }; 
 
-var [name,age:agea,address:{city,area}] = person;  
+console.log( university.getAddress); 
+
+
